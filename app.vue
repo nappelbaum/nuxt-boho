@@ -12,6 +12,7 @@ const counter = useState("counter", () => Math.round(Math.random() * 1000));
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 body {
   font-family: Arial, Helvetica, sans-serif;

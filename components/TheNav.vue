@@ -25,13 +25,13 @@ router.beforeEach(() => {
 <template>
   <Disclosure
     as="nav"
-    class="bg-white fixed bottom-0 z-10 w-full font-body main-nav"
+    class="bg-white fixed top-0 z-10 w-full font-body main-nav"
     :class="{
       'main-nav__anim-top': moveNav == 'open',
       'main-nav__anim-bottom': moveNav == 'close',
     }"
   >
-    <div class="mx-auto shadow lg:shadow-none px-4 lg:px-8">
+    <div class="mx-auto shadow-lg px-4 lg:px-8">
       <div
         class="main-nav__up-container relative flex items-center justify-between"
       >
@@ -48,7 +48,7 @@ router.beforeEach(() => {
           </button>
         </div>
         <!-- Desktop menu-->
-        <div class="flex w-full items-center justify-end lg:justify-between">
+        <div class="flex w-full items-center justify-end lg:justify-between main-nav__container">
           <div class="flex items-center">
             <NuxtLink to="/" class="flex flex-shrink-0 items-center">
               <div class="main-nav__name uppercase tracking-wider font-bold">
@@ -62,12 +62,15 @@ router.beforeEach(() => {
                   :key="item.name"
                   :to="item.href"
                   class="main-nav__link block py-1 font-body font-medium hover:text-black"
-                  >{{ item.name }}</NuxtLink
                 >
+                  <span>
+                    {{ item.name }}
+                  </span>
+                </NuxtLink>
               </div>
             </div>
           </div>
-          <control-buttons v-if="route.path === '/design' && !open" />
+          <control-buttons />
         </div>
       </div>
     </div>
@@ -75,7 +78,7 @@ router.beforeEach(() => {
     <!-- Mobile menu-->
     <transition name="mobileMenu">
       <div v-if="open" class="main-nav__mobile-menu lg:hidden lg:h-auto">
-        <div class="menu-item space-y-1 px-2 pb-6 pt-4">
+        <div class="menu-item space-y-1 px-3 pb-6 pt-6">
           <NuxtLink
             v-for="item in navigation"
             :key="item.name"
@@ -91,7 +94,7 @@ router.beforeEach(() => {
 </template>
 
 <style lang="scss" scoped>
-@import "~/assets/scss/main.scss";
+@use "~/assets/scss/variables.scss" as var;
 
 .main-nav {
   color: #a8a8a8;
@@ -99,7 +102,7 @@ router.beforeEach(() => {
   transition: all 0.8s;
 
   &__up-container {
-    height: $nav-height;
+    height: var.$nav-height;
   }
 
   &__name {
@@ -108,15 +111,23 @@ router.beforeEach(() => {
     color: #333;
     letter-spacing: 0.1em;
 
-    @media (max-width: 440px) {
+    @media (max-width: 500px) {
       display: none;
     }
   }
 
   &__mobile-menu {
     position: relative;
-    height: calc(100vh - $nav-height);
+    height: calc(100vh - var.$nav-height);
     z-index: 20;
+  }
+
+  &__container {
+    @media (min-width: calc(var.$main-max-width + var.$main-padding-x)) {
+      width: var.$main-max-width;
+      margin: 0 auto;
+      padding: 0 var.$main-padding-x;
+    }
   }
 }
 
@@ -150,7 +161,7 @@ router.beforeEach(() => {
 .mobileMenu-enter-active,
 .mobileMenu-leave-active {
   opacity: 1;
-  height: calc(100vh - $nav-height);
+  height: calc(100vh - var.$nav-height);
   transition: all 0.3s ease-out;
 }
 
@@ -184,7 +195,7 @@ router.beforeEach(() => {
 
 @keyframes navMovingToTop {
   from {
-    top: calc(100vh - $nav-height);
+    top: calc(100vh - var.$nav-height);
   }
   to {
     top: 0;
@@ -192,7 +203,7 @@ router.beforeEach(() => {
 }
 @keyframes navMovingToBottom {
   from {
-    bottom: calc(100vh - $nav-height);
+    bottom: calc(100vh - var.$nav-height);
   }
   to {
     bottom: 0;
@@ -203,7 +214,7 @@ router.beforeEach(() => {
     top: 0;
   }
   to {
-    top: calc(100vh - $nav-height);
+    top: calc(100vh - var.$nav-height);
   }
 }
 </style>

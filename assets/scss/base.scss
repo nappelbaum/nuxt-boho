@@ -1,0 +1,12 @@
+@use "variables" as var;
+
+.main-container {
+    max-width: var.$main-max-width;
+    margin: 0 auto;
+    padding: 0 var.$main-padding-x;
+}
+
+.portfolio {
+    margin-top: calc(var.$grid-margin + 4px + var.$nav-height);
+    margin-bottom: var.$grid-margin;
+}

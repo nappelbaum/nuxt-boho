@@ -1,0 +1,25 @@
+// nav
+$nav-height: 80px;
+
+//main
+$main-max-width: 1400px;
+$main-padding-x: 48px;
+
+//portfolio grid
+$grid-margin: 52px;
+$grid-carousel-padding: 8px;
+
+$card-width: clamp(190px, 13vw, 220px);
+$cart-image-prop: 1;
+$card-border-rad: 12px;
+$card-border-width: 1px;
+
+$card-caption-margin: 14px;
+$card-caption-font-size: 16px;
+$card-caption-line-height: 24px;
+
+$card-height: calc($card-width * $cart-image-prop);
+
+// slider
+$swiper-btn-width: 46px;
+$round-border-color: #cbcbcb;

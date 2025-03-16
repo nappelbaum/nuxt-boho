@@ -1,13 +1,18 @@
 <script setup>
 import GetService from "../../API/GetService.js";
 const route = useRoute();
-const products = useProducts();
 const error = ref(false);
-const product = ref({});
+
+const product = useProduct();
+const loading = ref(false);
 
 const fetchProduct = async () => {
-  if (!products.value.length) {
-    const data = await GetService.getProduct(route.params.id);
+    loading.value = true;
+
+    const data = await GetService.getProduct(route.params.slug);
+
+    loading.value = false;
+    console.log(data);
 
     if (!data) {
       error.value = true;
@@ -15,41 +20,49 @@ const fetchProduct = async () => {
     }
 
     product.value = data;
-  } else {
-    const currentItem = products.value.find(
-      (product) => product.id == route.params.id
-    );
-    if (currentItem) product.value = currentItem;
-    else error.value = true;
-  }
 };
 
 fetchProduct();
 </script>
 
-<template>
-  <div class="product mx-auto max-w-7xl py-10 px-8 font-body">
-    <div v-if="error">Ошибка загрузки</div>
-    <div v-else class="product__wrapper">
-      <div class="product__img">
-        <img :src="product.imageUrl" alt="" />
-      </div>
-      <div class="product__content">
-        <h1 class="text-2xl font-body font-bold" style="text-align: start">
-          {{ product.name }}
-        </h1>
-        <div class="product__cost font-sans">
-          {{ product.defaultDisplayedPriceFormatted }}
-        </div>
+<!-- <template>
+  <div v-if="product">
+    <h1 class="text-2xl font-body font-bold" style="text-align: start">
+            {{ product.name }}
+    </h1>
+    <div v-html="product.description"></div>
 
-        <div class="product__btns">
-          <button class="product__cart">
-            <span>В корзину</span>
-          </button>
+    <img :src="'http://127.0.0.1:8000/' + product.images[0].copy_800" alt="" />
+  </div>
+
+</template> -->
+
+<template>
+  <div v-if="product">
+    <div v-if="loading"></div>
+    <div v-else class="product mx-auto max-w-7xl py-10 px-8 font-body">
+      <div v-if="error">Ошибка загрузки</div>
+      <div v-else class="product__wrapper">
+        <div class="product__img">
+          <img :src="'http://127.0.0.1:8000/' + product.images[0].copy_800" alt="" />
         </div>
-        <div class="product__description">
-          <h2 class="font-bold">Информация о товаре</h2>
-          <p class="product__description--p" v-html="product.description"></p>
+        <div class="product__content">
+          <h1 class="text-2xl font-body font-bold" style="text-align: start">
+            {{ product.name }}
+          </h1>
+          <div class="product__cost font-sans">
+            {{ product.cost }} ₽
+          </div>
+
+          <div class="product__btns">
+            <button class="product__cart">
+              <span>В корзину</span>
+            </button>
+          </div>
+          <div class="product__description">
+            <h2 class="font-bold">Информация о товаре</h2>
+            <div class="product__description--p" v-html="product.description"></div>
+          </div>
         </div>
       </div>
     </div>

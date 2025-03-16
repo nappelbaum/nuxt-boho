@@ -5,7 +5,9 @@ const banks = useBanks();
 
 const fetchBanks = async () => {
   const data = await GetService.getBanksOnly();
-  banks.value = data.value;
+  banks.value = data.value.data;
+
+  console.log(data.value.data);
 };
 
 fetchBanks();

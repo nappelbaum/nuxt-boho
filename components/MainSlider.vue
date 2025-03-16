@@ -57,7 +57,7 @@ watch(currentId, (value) => slideToId(value.id), { deep: true });
         @click="activeIndex = i"
         class="swiper-slide portfolio__img"
       >
-        <img :src="product.imageUrl" :alt="product.name" />
+        <img :src="'http://127.0.0.1:8000/' + product.images[0].copy_main" :alt="product.name" />
       </NuxtLink>
     </div>
 
@@ -88,7 +88,7 @@ watch(currentId, (value) => slideToId(value.id), { deep: true });
 </template>
 
 <style lang="scss" scoped>
-@import "~/assets/scss/main.scss";
+@use "~/assets/scss/variables.scss" as *;
 
 .portfolio__slider {
   position: relative;
