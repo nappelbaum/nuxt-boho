@@ -4,7 +4,7 @@ const open = useOpen();
 
 <template>
   <ul
-    class="flex pl-3 lg:border-l lg:border-l-slate-300 lg:text-gray-500"
+    class="flex pl-5 lg:pl-3 lg:border-l lg:border-l-slate-300 lg:text-gray-500"
   >
     <li>
       <NuxtLink

@@ -4,7 +4,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/vue/24/outline";
 
 const open = ref(false);
 const route = useRoute();
-const router = useRouter();
+// const router = useRouter();
 const openGridContainer = useOpen();
 const moveNav = ref("");
 watch(openGridContainer, (value) => (moveNav.value = value ? "open" : "close"));
@@ -13,13 +13,13 @@ const navigation = [
   { name: "House of Inspiration", href: "/", current: true },
   { name: "Portfolio", href: "/design", current: false },
   { name: "About", href: "/about", current: true },
-  { name: "Blog", href: "/blog", current: true },
+  { name: "Etsy", href: "/etsy", current: true },
   { name: "Contact", href: "/contact", current: false },
 ];
 
-router.beforeEach(() => {
-  openGridContainer.value = false;
-});
+// router.beforeEach(() => {
+//   openGridContainer.value = false;
+// });
 </script>
 
 <template>
@@ -27,11 +27,12 @@ router.beforeEach(() => {
     as="nav"
     class="bg-white fixed top-0 z-10 w-full font-body main-nav"
     :class="{
+      'absolute': route.name == 'items-slug',
       'main-nav__anim-top': moveNav == 'open',
       'main-nav__anim-bottom': moveNav == 'close',
     }"
   >
-    <div class="mx-auto shadow-lg px-4 lg:px-8">
+    <div class="mx-auto shadow-lg px-4 lg:px-8 main-nav__up-wrapper">
       <div
         class="main-nav__up-container relative flex items-center justify-between"
       >
@@ -83,7 +84,7 @@ router.beforeEach(() => {
             v-for="item in navigation"
             :key="item.name"
             :to="item.href"
-            class="block px-3 py-3 text-lg font-body font-medium"
+            class="block px-3 py-3 text-lg font-body font-medium text-gray-800"
           >
             <div @click="open = false">{{ item.name }}</div>
           </NuxtLink>
@@ -97,9 +98,15 @@ router.beforeEach(() => {
 @use "~/assets/scss/variables.scss" as var;
 
 .main-nav {
-  color: #a8a8a8;
+  color: var.$link-color;
   box-shadow: 0 -1px 3px 0 rgba(0, 0, 0, 0.1), 0 -1px 2px 1px rgba(0, 0, 0, 0.1);
   transition: all 0.8s;
+
+  &__up-wrapper {
+    @media (min-width: 1025px) {
+      padding: 0 var.$main-padding-x !important;
+    }
+  }
 
   &__up-container {
     height: var.$nav-height;
@@ -111,7 +118,7 @@ router.beforeEach(() => {
     color: #333;
     letter-spacing: 0.1em;
 
-    @media (max-width: 500px) {
+    @media (max-width: 540px) {
       display: none;
     }
   }
@@ -156,6 +163,10 @@ router.beforeEach(() => {
 .menu-item .router-link-active {
   color: #000;
   transition: all 0.3s;
+
+  @media (max-width: 1024px) {
+    font-weight: 600;
+  }
 }
 
 .mobileMenu-enter-active,

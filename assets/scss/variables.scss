@@ -4,10 +4,24 @@ $nav-height: 80px;
 //main
 $main-max-width: 1400px;
 $main-padding-x: 48px;
+$link-color: #999999;
+
+//home
+$back-color: #8fb39a;
+$home-media-lg: 2000px;
+$home-lg-width: 63%;
+$home-media-sm: 800px;
+$back-color-sm: #8fb39adb;
 
 //portfolio grid
 $grid-margin: 52px;
+$grid-margin-sm: 28px;
+
+$grid-text-width: clamp(280px, 14vw, 340px);
+$grid-text-margin-right: 20px;
+
 $grid-carousel-padding: 8px;
+$grid-carousel-gap: clamp(15px, 1.5vw, 20px);
 
 $card-width: clamp(190px, 13vw, 220px);
 $cart-image-prop: 1;
@@ -20,6 +34,17 @@ $card-caption-line-height: 24px;
 
 $card-height: calc($card-width * $cart-image-prop);
 
+$text-color: #333;
+
 // slider
 $swiper-btn-width: 46px;
 $round-border-color: #cbcbcb;
+
+//product-slider
+$product-main-gap: 40px;
+
+$slider-proportion: calc(123.33333333333334% - 123.33333333333333px);
+$product-image-prop: 1;
+
+//footer
+$footer-back-color: #ededed;

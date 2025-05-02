@@ -2,6 +2,41 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+/* @import url(https://db.onlinewebfonts.com/c/1a48997bf8dcd41ee67f81a1b3c78eb4?family=Knockout-HTF27-JuniorBantamwt); */
+
+/* @font-face {
+  font-family: "Knockout-HTF27-JuniorBantamwt";
+  src: url("https://db.onlinewebfonts.com/t/1a48997bf8dcd41ee67f81a1b3c78eb4.eot");
+  src: url("https://db.onlinewebfonts.com/t/1a48997bf8dcd41ee67f81a1b3c78eb4.eot?#iefix")format("embedded-opentype"),
+  url("https://db.onlinewebfonts.com/t/1a48997bf8dcd41ee67f81a1b3c78eb4.woff2")format("woff2"),
+  url("https://db.onlinewebfonts.com/t/1a48997bf8dcd41ee67f81a1b3c78eb4.woff")format("woff"),
+  url("https://db.onlinewebfonts.com/t/1a48997bf8dcd41ee67f81a1b3c78eb4.ttf")format("truetype"),
+  url("https://db.onlinewebfonts.com/t/1a48997bf8dcd41ee67f81a1b3c78eb4.svg#Knockout-HTF27-JuniorBantamwt")format("svg");
+} */
+
+@font-face {
+  font-family: "Knockout My";
+  src: url("/fonts/Knockout/knockout-htf27-juniorbantamwt.otf") format('opentype');
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Franklin My";
+  src: url("/fonts/Franklin/franklinextracond_gothiccyr.otf") format('opentype');
+}
+
+@font-face {
+  font-family: "Cinematografica My";
+  src: url("/fonts/Cinematografica/Cinematografica-Regular.otf") format('opentype');
+  font-display: block;
+}
+
+/* @font-face {
+  font-family: "Galgo My";
+  src: url("/fonts/Galgo/Galgo.otf") format('opentype');
+  src: url("/fonts/Galgo/Galgo.ttf") format('truetype');
+} */
+
 @font-face {
   font-family: "Proxima Nova Bl";
   src: url("/fonts/Proxima Nova/ProximaNova-Black.eot");

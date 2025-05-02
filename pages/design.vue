@@ -2,10 +2,8 @@
 import GetService from "../API/GetService.js";
 
 const error = ref(false);
-// const products = useProducts();
 const categories = useCategories();
-const openGridContainer = useOpen();
-const currentId = ref({ id: null, switch: true });
+// const currentId = ref({ id: null, switch: true });
 const loading = ref(false);
 
 // const fetchProducts = async () => {
@@ -41,20 +39,20 @@ const fetchCategories = async () => {
 // fetchProducts();
 fetchCategories();
 
-const setCurrentId = (id) => {
-  currentId.value.id = id;
-  currentId.value.switch = !currentId.value.switch;
-};
+// const setCurrentId = (id) => {
+//   currentId.value.id = id;
+//   currentId.value.switch = !currentId.value.switch;
+// };
 </script>
 
 <template>
-  <div class="main-container">
+  <section class="portfolio">
     <div v-if="loading"></div>
-    <section v-else class="portfolio">
+    <div v-else class="main-container">
       <div v-if="error">Ошибка загрузки</div>
       <grid-content />
-    </section>
-  </div>
+    </div>
+  </section>
 </template>
 
 <style lang="scss" scoped>

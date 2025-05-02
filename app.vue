@@ -1,7 +1,3 @@
-<script setup>
-const counter = useState("counter", () => Math.round(Math.random() * 1000));
-</script>
-
 <template>
   <NuxtLayout>
     <NuxtPage />
@@ -16,5 +12,11 @@ const counter = useState("counter", () => Math.round(Math.random() * 1000));
 }
 body {
   font-family: Arial, Helvetica, sans-serif;
+}
+
+#__nuxt {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 </style>

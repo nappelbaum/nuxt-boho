@@ -4,9 +4,36 @@
     max-width: var.$main-max-width;
     margin: 0 auto;
     padding: 0 var.$main-padding-x;
+
+    @media (max-width: 500px) {
+        padding: 0 16px;
+    }
+}
+
+.home {
+    position: relative;
+    display: flex;
+
+    @media (min-width: var.$home-media-lg) {
+        display: block;
+    }
+    @media (max-width: var.$home-media-sm) {
+        display: block;
+    }
 }
 
 .portfolio {
     margin-top: calc(var.$grid-margin + 4px + var.$nav-height);
+    // margin-bottom: var.$grid-margin;
+    max-width: 100%;
+
+    @media (max-width: 800px) {
+        margin-top: calc(var.$grid-margin-sm + 12px + var.$nav-height);
+    }
+}
+
+.category, .product {
+    margin-top: calc(var.$grid-margin + 4px + var.$nav-height);
     margin-bottom: var.$grid-margin;
+    max-width: 100%;
 }
