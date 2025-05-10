@@ -1,7 +1,3 @@
-<script setup>
-const open = useOpen();
-</script>
-
 <template>
   <ul
     class="flex pl-5 lg:pl-3 lg:border-l lg:border-l-slate-300 lg:text-gray-500"
@@ -20,7 +16,7 @@ const open = useOpen();
 
     <li>
       <NuxtLink
-        to="/lk"
+        to="/favorites"
         class="p-3 cursor-pointer flex items-center justify-center control__link"
         title="Избранное"
       >
@@ -32,7 +28,7 @@ const open = useOpen();
 
     <li>
       <NuxtLink
-        to="/lk"
+        to="/cart"
         class="p-3 cursor-pointer flex items-center justify-center control__link"
         title="Корзина"
       >

@@ -46,8 +46,6 @@ onMounted(async () => {
       swiper.value.push(null);
     }
   });
-
-  console.log(swiper.value);
 })
 </script>
 
@@ -74,9 +72,7 @@ onMounted(async () => {
           :key="product.id"  
           class="grid__images-border" :class="category.swiper && 'swiper-slide'">
             <the-card :product="product" />
-            <div class="cursor-pointer flex items-center justify-center grid__image-favorite" title="Добавить в избранное">
-              <grid-favorite />
-            </div>
+            <grid-favorite :productId="product.id" />
         </div>
       </div>
     </div>

@@ -1,13 +1,13 @@
-export const useOpen = () => useState<boolean>("open", () => false);
-export const useProducts = () => useState<IProduct[]>("products", () => []);
-export const useActiveIndex = () => useState<number>("activeIndex", () => 0);
-export const useBanks = () => useState<IBank[]>("banks", () => []);
+// export const useOpen = () => useState<boolean>("open", () => false);
+// export const useActiveIndex = () => useState<number>("activeIndex", () => 0);
 
 export const useCategories = () => useState<ICategory[]>("categories", () => []);
 export const useProduct = () => useState<IProduct>("product");
 export const useCategory = () => useState<ICategory>("category");
 export const useCategoriesSimple = () => useState<ICategorySimple[]>("categories_simple", () => []);
 export const useMainInfo = () => useState<IMainInfo>("main_info");
+export const useFavorites = () => useState<[]>("favorites", () => []);
+export const useFavoritesProducts = () => useState<IProduct[]>("favorites_products", () => []);
 
 interface ICategory {
   id: number;

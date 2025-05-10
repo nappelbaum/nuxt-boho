@@ -54,6 +54,12 @@ footer {
         align-items: center;
         color: var.$link-color;
 
+        @media (max-width: 600px) {
+            flex-direction: column;
+            justify-content: center;
+            row-gap: 16px;
+        }
+
         .copyright__etsy-img {
             width: 25px;
             padding: 1.4px;

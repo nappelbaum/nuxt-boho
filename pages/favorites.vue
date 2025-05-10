@@ -1,18 +1,20 @@
 <script setup>
 import GetService from "../../API/GetService.js";
+import { getFavorites } from '~/utils/useFavorites';
 import TheCard from '~/components/card/TheCard.vue';
 import GridFavorite from '~/components/card/GridFavorite.vue';
 
-const route = useRoute();
+const favorites = useFavorites();
+const favoritesProducts = useFavoritesProducts();
 const error = ref(false);
-
-const category = useCategory();
 const loading = ref(false);
 
-const fetchCategory = async () => {
+const fetchFavoritesProducts = async () => {
     loading.value = true;
 
-    const data = await GetService.getCategory(route.params.slug);
+    const favorites = await getFavorites();
+
+    const data = await GetService.getFavoritesProducts(favorites);
 
     loading.value = false;
 
@@ -21,60 +23,49 @@ const fetchCategory = async () => {
       return;
     }
 
-    category.value = data;
+    favoritesProducts.value = data;
 };
 
-fetchCategory();
+fetchFavoritesProducts();
+
+onMounted(() => {
+  watch(favorites, () => fetchFavoritesProducts(), {deep: true})
+})
+
 </script>
 
 <template>
-    <div v-if="category">
-        <section v-if="loading"></section>
-        <section v-else class="category">
-            <div v-if="error">Ошибка загрузки</div>
-            <div v-else class="main-container">
-                <div class="mb-8 category__text">
-                    <h2 class="category__title">{{ category.long_name }}</h2>
-                    <div v-html="category.description"></div>
-                </div>
-                <div class="category__images-wrapper">
-                    <div
-                    v-for="product in category.products"
-                    :key="product.id"  
-                    class="category__images-border">
-                        <the-card :product="product" />
-                        <grid-favorite :productId="product.id" />
-                    </div>
-                </div>
-            </div>
-        </section>
+    <div v-if="favoritesProducts">
+      <section v-if="loading"></section>
+      <section v-else class="category">
+        <div v-if="error" class="mt-44">Ошибка загрузки</div>
+        <div v-else class="main-container">
+          <h1 class="text-4xl mb-4">Избранное</h1>
+          <div v-if="!favoritesProducts.length">
+            <h5 class="text-2xl">Нет товаров в избранном</h5>
+          </div>
+          <div v-else class="category__images-wrapper">
+              <div
+                v-for="product in favoritesProducts"
+                :key="product.id"  
+                class="category__images-border">
+                    <the-card :product="product" />
+                    <grid-favorite :productId="product.id" />
+              </div>
+          </div>
+        </div>
+      </section>
     </div>
+    
 </template>
+
 
 <style lang="scss" scoped>
 @use "~/assets/scss/variables.scss" as var;
 @use "~/assets/scss/base.scss";
 
 .category {
-    .category__text {
-        @media (max-width: 500px) {
-            text-align: center;
-        }
-        
-        .category__title {
-          font-family: "Proxima Nova Rg";
-          font-size: 32px;
-          line-height: 1.2em;
-          text-transform: none;
-          text-decoration: none;
-          letter-spacing: 0.01em;
-          font-weight: 400;
-          font-style: normal;
-          color: #333;
-          margin-bottom: 18px;
-        }
-    }
-
+    
     .category__images-wrapper {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

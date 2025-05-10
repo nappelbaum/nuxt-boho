@@ -10,7 +10,7 @@ const swiper = ref({});
 const thumbnails = ref(null);
 const isUpButton = ref(false);
 const isDownButton = ref(false);
-const scrollStep = 80;
+const scrollStep = 120;
 const scrollMicroStep = 4;
 
 Fancybox.bind('[data-fancybox="gallery"]', {
@@ -62,9 +62,9 @@ const setSwiper = async () => {
   await nextTick();
   swiper.value = new Swiper(".swiper", {
     direction: "horizontal",
-    // spaceBetween: "2%",
+    spaceBetween: "2%",
     loop: false,
-    allowTouchMove: window.innerWidth > 500 ? false : true,
+    allowTouchMove: window.innerWidth > 600 ? false : true,
   });
 };
 
@@ -170,10 +170,24 @@ onMounted(() => {
     align-self: flex-start;
     position: relative;
 
+    @media (max-width: 1024px) {
+        width: calc(60% - var.$product-main-gap);
+    }
+    @media (max-width: 800px) {
+        width: 100%;
+    }
+    @media (max-width: 600px) {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
     .slider-padding {
         padding-top: var.$slider-proportion;
         position: relative;
         width: 100%;
+        @media (max-width: 600px) {
+            padding-top: var.$slider-proportion-mobile;
+        }
 
         .slider-wrapper {
             height: 100%;
@@ -188,6 +202,9 @@ onMounted(() => {
 
             .slider__thumbnails-container {
                 height: 100%;
+                @media (max-width: 600px) {
+                   display: none;
+                }
         
                 .slider__thumbnails-wrapper {
                     width: 70px;
@@ -300,9 +317,8 @@ onMounted(() => {
 
             .slider__imgs-container {
                 height: 100%;
-
-                .slider__imgs-wrapper {
-                    // height: auto;
+                @media (max-width: 600px) {
+                    width: 100%;
                 }
             }
 
@@ -316,29 +332,26 @@ onMounted(() => {
                     }
                 }
         
-                // position: relative;
-        
-                // &::after {
-                //     content: "";
-                //     padding-top: calc(100% * var.$product-image-prop);
-                //     display: block;
-                // }
-        
-                // .swiper-slide-img-container {
-                //     position: absolute;
-                //     top: 0;
-                //     left: 0;
-                //     right: 0;
-                //     bottom: 0;
-                //     overflow: hidden;
-        
-                //     img {
-                //         width: 100%;
-                //         height: 100%;
-                //         object-fit: cover;
-                //         object-position: center;
-                //     }
-                // }
+                @media (max-width: 600px) {
+                   position: relative;
+           
+                   .swiper-slide-img-container {
+                       position: absolute;
+                       top: 0;
+                       left: 0;
+                       right: 0;
+                       bottom: 0;
+                       overflow: hidden;
+           
+                       img {
+                           width: 100%;
+                           height: 100%;
+                           object-fit: cover;
+                           object-position: center;
+                       }
+                   }
+                }
+
             }
         }
     }

@@ -1,3 +1,20 @@
+<script setup>
+import { getFavorites } from '~/utils/useFavorites'
+
+const favorites = useFavorites();
+
+onMounted(async () => {
+  favorites.value = await getFavorites();
+
+  window.addEventListener('storage', async () => {
+    const newFavorites = await getFavorites();
+    favorites.value = newFavorites;
+    // console.log('storage:' + favorites.value);
+  })
+})
+
+</script>
+
 <template>
   <NuxtLayout>
     <NuxtPage />

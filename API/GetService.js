@@ -62,15 +62,15 @@ export default class GetService {
     }
   }
 
-  // получение всех банков без кредитов
-  static async getBanksOnly() {
+  static async getFavoritesProducts(ids) {
+    
+    const idsStr = ids.join(',');
+
     try {
-      const { data } = await useAsyncData("bank", () =>
-        $fetch("https://laravel.bohohome.ru/api/banks", {
+      const data = await $fetch(`http://127.0.0.1:8000/api/products?favorites=${idsStr}`, {
           method: "GET",
         })
-      );
-
+      
       return data;
     } catch (err) {
       return null;

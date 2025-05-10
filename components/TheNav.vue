@@ -5,9 +5,9 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/vue/24/outline";
 const open = ref(false);
 const route = useRoute();
 // const router = useRouter();
-const openGridContainer = useOpen();
+// const openGridContainer = useOpen();
 const moveNav = ref("");
-watch(openGridContainer, (value) => (moveNav.value = value ? "open" : "close"));
+// watch(openGridContainer, (value) => (moveNav.value = value ? "open" : "close"));
 
 const navigation = [
   { name: "House of Inspiration", href: "/", current: true },

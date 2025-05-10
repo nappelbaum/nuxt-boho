@@ -53,10 +53,9 @@ fetchProduct();
   column-gap: var.$product-main-gap;
   // column-gap: clamp(20px, 4vw, 60px);
 
-  @media (max-width: 880px) {
+  @media (max-width: 800px) {
     flex-direction: column;
     row-gap: var.$product-main-gap;
-    // row-gap: clamp(20px, 4vw, 60px);
   }
 }
 </style>
